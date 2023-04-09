@@ -1,0 +1,14 @@
+In the line df_balanced = df_raw.groupby('AuthorID').apply(lambda x: x.sample(n=min(len(x), 1000))), n=min(len(x), 1000) is setting the sample size n to be the minimum value between the length of the group x and 1000.
+
+This is done to ensure that the number of samples for each author is balanced and not influenced by authors who have more tweets than others. For example, if an author has 2000 tweets and another has 500 tweets, setting n=1000 would result in both authors having 1000 tweets in the balanced dataset, instead of the first author dominating the dataset with all 2000 of their tweets. By limiting the sample size to the minimum of 1000 and the number of tweets by an author, the resulting balanced dataset is less likely to be biased towards authors with more tweets.
+
+
+is this approach better or worse than resampling with n equal to the average number of tweets per author?
+
+It depends on the specific problem and dataset.
+
+Setting n equal to the average number of tweets per author is a common approach for resampling and can be effective in reducing class imbalance. However, it may not be appropriate in cases where there are significant differences in the number of tweets per author or where there are extreme outliers.
+
+Using n=min(len(x), 1000) ensures that each author has at least some representation in the balanced dataset while also limiting the impact of extreme outliers. This approach can be effective in cases where there is significant variation in the number of tweets per author or where the number of tweets per author is relatively small.
+
+Ultimately, the best approach will depend on the specific dataset and the goals of the analysis. It may be necessary to try multiple approaches and evaluate their effectiveness in reducing class imbalance and improving model performance.
